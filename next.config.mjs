@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactCompiler: true,
-  turbopack: false,
+  turbopack: {},
 
   webpack(config) {
     config.module.rules.push({

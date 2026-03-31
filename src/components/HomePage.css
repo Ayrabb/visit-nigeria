@@ -1,0 +1,75 @@
+.page {
+  min-height: 100vh;
+  background-color: #0b3d2e;
+  display: flex;
+}
+
+/* This controls LEFT vs RIGHT balance */
+.scene-wrapper {
+  margin-top: 140px;
+  margin-left: 520px;   /* BIG left space */
+  margin-right: 48px;   /* SMALL right space */
+  margin-bottom: 72px;
+  position: relative;
+  overflow: visible
+}
+
+/* Frame stays natural */
+.frame {
+  max-width:  900px;
+  padding: 2px;
+  border: 1px solid #111;
+  background-color: white;
+  position: relative;
+}
+
+/* Image sizing only */
+.hero-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.visit-nigeria {
+  position: absolute;
+  right: 100%;
+  margin-right: 48px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 4;
+  white-space: nowrap;
+  line-height: 1;
+}
+
+/* VISIT (smaller, lighter) */
+.visit-nigeria .visit {
+  display: block;
+  font-size: 48px;
+  font-family: "Montserrat", sans-serif;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #ffffff;
+  margin-bottom: 10px;
+}
+
+/* NIGERIA (hero word) */
+.visit-nigeria .nigeria {
+  display: inline-block;
+  font-size: 96px;
+  font-family: "Pacifico", cursive;
+  color: #ffffff;
+  position: relative;
+  z-index: 2;
+  padding: 6px 18px;
+}
+
+/* Splash behind NIGERIA only */
+.visit-nigeria .nigeria::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: #2aa84a;
+  border-radius: 18px 32px 20px 28px;
+  transform: rotate(-3deg);
+}

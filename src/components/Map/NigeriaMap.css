@@ -1,0 +1,70 @@
+/* ================================
+   LAYOUT
+================================ */
+
+.map-wrapper {
+  width: 100%;
+  min-height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 60px 0;
+  background: linear-gradient(to bottom, #ffffff, #f7f7f7);
+}
+
+/* ================================
+   MAP
+================================ */
+
+.nigeria-map {
+  width: 85%;
+  max-width: 950px;
+  height: auto;
+  display: block;
+}
+
+/* Default state */
+.nigeria-map path {
+  fill: #1f3d2b; /* Deep emerald */
+  stroke: #ffffff;
+  stroke-width: 1;
+  transition: fill 0.25s ease, transform 0.2s ease;
+  cursor: pointer;
+}
+
+/* Hover */
+.nigeria-map path:hover {
+  fill: #d4af37; /* Gold */
+}
+
+/* Active */
+.nigeria-map path.active {
+  fill: #d4af37;
+}
+
+/* Ensure labels don’t block clicks */
+.nigeria-map g {
+  pointer-events: none;
+}
+
+.nigeria-map g path {
+  pointer-events: auto;
+}
+
+.map-content {
+  text-align: center;
+  max-width: 1100px;
+}
+
+.map-title {
+  font-family: serif;
+  font-size: 48px;
+  margin-bottom: 16px;
+  letter-spacing: -0.5px;
+}
+
+.map-subtitle {
+  font-size: 18px;
+  color: #555;
+  margin-bottom: 60px;
+}

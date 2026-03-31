@@ -1,0 +1,84 @@
+/* ================================
+   PAGE BACKGROUND (GREEN SIDES)
+================================ */
+
+.destinations-page {
+  min-height: 100vh;
+  background-color: #0b3d2e;
+  display: flex;
+  justify-content: center; /* centers white column */
+}
+
+/* ================================
+   WHITE CENTER COLUMN
+================================ */
+
+.map-frame {
+  background: #f2f2f2;
+  width: 65%;
+  max-width: 900px;
+  min-height: 100vh;   /* FULL HEIGHT */
+  
+  padding: 40px 40px 60px;
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ================================
+   BACK BUTTON
+================================ */
+
+.top-bar {
+  width: 100%;
+}
+
+.back-button {
+  position: absolute;
+  top: 30px;
+  left: 40px;
+
+  background: none;
+  border: none;
+  color: #9fd8b7;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* ================================
+   TITLE
+================================ */
+
+.page-title {
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 40px;
+  font-size: 34px;
+  font-weight: 500;
+  color: #0b3d2e;
+}
+
+/* ================================
+   INSTRUCTION
+================================ */
+
+.map-instruction {
+  text-align: center;
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  margin-bottom: 40px;
+  color: #0b3d2e;
+}
+
+/* ================================
+   MAP
+================================ */
+
+.nigeria-map {
+  width: 100%;
+  max-width: 750px;
+  height: auto;
+  display: block;
+}

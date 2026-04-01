@@ -1,4 +1,5 @@
 import Reveal from "../../components/Reveal";
+import Link from "next/link";
 
 export default function CultureSection() {
   return (
@@ -52,7 +53,9 @@ export default function CultureSection() {
         </Reveal>
 
         <Reveal delay={600}>
+          <Link href="/culture">
           <button
+          
             className="inline-flex items-center gap-2 
                        bg-white text-emerald-900
                        px-10 py-4 rounded-full
@@ -63,6 +66,7 @@ export default function CultureSection() {
           >
             Explore our Culture
           </button>
+          </Link>
         </Reveal>
 
         {/* Elegant Gold Divider */}

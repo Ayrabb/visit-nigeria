@@ -16,19 +16,17 @@ const DANCES = [
       "An acrobatic, high-energy youth dance marked by flips, fast kicks, and colorful costumes.",
   },
   {
-    name: "Durbar Horse Parade",
-    region: "Hausa-Fulani – North",
-    image: "/images/dances/durbar.png",
-    description:
-      "Regal horsemanship with embroidered regalia, drums, and gun salutes during Eid and festivals.",
-  },
-  {
     name: "Vulma Dancers",
     region: "Adamawa – North East",
     image: "/images/dances/vulma.png",
     description:
       "Colorful, synchronized performances from Adamawa showcasing intricate footwork, spinning fabrics, and community celebration.",
   },
+  {
+    name:"Ekombo",
+    region: "Cross River",
+    image: "/images/dances/ekombi.png"
+  }
 ];
 
 export default function DancesSection() {

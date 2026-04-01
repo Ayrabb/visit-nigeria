@@ -15,21 +15,25 @@ export default function MapPage() {
     y: 0,
   });
 
-  const getStateKeyFromPath = (path) => {
-    if (!path) return null;
+  // Helper to find the actual <path> element
+  const getStateFromEvent = (e) => {
+    let target = e.target;
 
-    const rawName = path.getAttribute?.("name");
-    if (rawName) {
-      const normalized = rawName.toLowerCase().replace(/[^a-z]/g, "");
-      if (normalized === "federalcapitalterritory") return "fct";
-      return normalized; // "akwaibom", "crossriver", etc.
+    while (target && target.tagName !== "PATH") {
+      target = target.parentElement;
     }
+    if (!target) return null;
 
-    // Fallback to SVG ID codes like "NGAD"
-    const rawId = path.id || "";
-    const code = rawId.toLowerCase().replace(/^ng/, "");
-    if (!code) return null;
+    // Try name attribute first
+    const nameAttr = target.getAttribute("name");
+    const keyFromName = nameAttr
+      ? nameAttr.toLowerCase().replace(/[^a-z]/g, "") === "federalcapitalterritory"
+        ? "fct"
+        : nameAttr.toLowerCase().replace(/[^a-z]/g, "")
+      : null;
 
+    // Fallback to SVG ID
+    const idAttr = target.id?.toLowerCase().replace(/^ng/, "");
     const codeMap = {
       ab: "abia",
       ad: "adamawa",
@@ -70,23 +74,13 @@ export default function MapPage() {
       za: "zamfara",
     };
 
-    return codeMap[code] || null;
-  };
-
-  const getStateFromEvent = (e) => {
-    const target = e?.target;
-    const path =
-      target?.closest?.("path") ||
-      (target?.tagName === "path" ? target : null);
-    if (!path) return null;
-
-    const key = getStateKeyFromPath(path);
+    const key = keyFromName || codeMap[idAttr] || null;
     if (!key) return null;
 
     const data = STATES[key];
     if (!data) return null;
 
-    return { key, path, data };
+    return { key, path: target, data };
   };
 
   const handlePointerMove = (e) => {
@@ -105,32 +99,26 @@ export default function MapPage() {
   };
 
   const handlePointerLeave = () => {
-    setTooltip({
-      visible: false,
-      name: "",
-      x: 0,
-      y: 0,
-    });
+    setTooltip({ visible: false, name: "", x: 0, y: 0 });
   };
 
   const handlePointerDown = (e) => {
     const state = getStateFromEvent(e);
     if (!state) return;
 
-    // ensure only one highlighted path at a time
+    // Remove previous highlights
     const svgRoot = state.path.ownerSVGElement;
     if (svgRoot) {
       svgRoot.querySelectorAll("path").forEach((p) => {
         p.classList.remove(styles.activePath);
       });
     }
-    state.path.classList.add(styles.activePath);
 
+    state.path.classList.add(styles.activePath);
     setActiveState({ id: state.key, ...state.data });
   };
 
   const closeDrawer = () => {
-    // remove highlighted state when closing
     const svgEl = document.querySelector(`.${styles.nigeriaMap}`);
     if (svgEl) {
       svgEl.querySelectorAll("path").forEach((p) => {
@@ -143,13 +131,9 @@ export default function MapPage() {
   return (
     <section className={styles.mapWrapper}>
       <div className={styles.mapContent}>
-        <h1 className={styles.mapTitle}>
-          Explore Nigeria by Region
-        </h1>
-
+        <h1 className={styles.mapTitle}>Explore Nigeria by Region</h1>
         <p className={styles.mapSubtitle}>
-          Click any state to discover destinations, culture,
-          cuisine and festivals
+          Click any state to discover destinations, culture, cuisine and festivals
         </p>
 
         <div className={styles.mapContainer}>
@@ -167,7 +151,7 @@ export default function MapPage() {
               style={{
                 top: tooltip.y + 12,
                 left: tooltip.x + 12,
-                position: "fixed", // 🔥 IMPORTANT FIX
+                position: "fixed",
                 pointerEvents: "none",
                 zIndex: 1000,
               }}
@@ -179,26 +163,16 @@ export default function MapPage() {
       </div>
 
       <div
-        className={`${styles.overlay} ${
-          activeState ? styles.overlayVisible : ""
-        }`}
+        className={`${styles.overlay} ${activeState ? styles.overlayVisible : ""}`}
         onClick={closeDrawer}
       />
 
-      <aside
-        className={`${styles.drawer} ${
-          activeState ? styles.drawerOpen : ""
-        }`}
-      >
+      <aside className={`${styles.drawer} ${activeState ? styles.drawerOpen : ""}`}>
         {activeState && (
           <div>
-            <button
-              className={styles.closeBtn}
-              onClick={closeDrawer}
-            >
+            <button className={styles.closeBtn} onClick={closeDrawer}>
               ×
             </button>
-
             <h2 className={styles.drawerTitle}>{activeState.name}</h2>
 
             <div className={styles.drawerSection}>
@@ -207,11 +181,7 @@ export default function MapPage() {
                 <strong>Capital:</strong> {activeState.capital} •{" "}
                 <strong>Region:</strong> {activeState.region}
               </p>
-              {activeState.size && (
-                <p>
-                  <strong>Size:</strong> {activeState.size}
-                </p>
-              )}
+              {activeState.size && <p><strong>Size:</strong> {activeState.size}</p>}
             </div>
 
             {activeState.tribes && (

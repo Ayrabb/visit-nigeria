@@ -59,6 +59,7 @@
   stroke: #ffffff;
   stroke-width: 1;
   cursor: pointer;
+  pointer-events: all;
 }
 /* ================================
    TOOLTIP

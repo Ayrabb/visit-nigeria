@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev --webpack",
-    "build": "next build",
+    "build": "next build --webpack",
     "start": "next start",
     "lint": "eslint"
   },
@@ -20,6 +20,9 @@
   },
   "devDependencies": {
     "@svgr/webpack": "^8.1.0",
+    "@types/eslint-scope": "^8.4.0",
+    "@types/node": "^25.5.0",
+    "@types/react": "^18.3.28",
     "autoprefixer": "^10.4.24",
     "babel-plugin-react-compiler": "1.0.0",
     "eslint": "^9",

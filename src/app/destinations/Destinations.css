@@ -95,3 +95,6 @@
 .nigeria-map path.active-path {
   fill: #0b3d2e;
 }
+.nigeria-map path { transition: fill 0.15s ease; cursor: pointer; }
+.nigeria-map path:hover { fill: #1a6b47; }
+.nigeria-map path.active-path { fill: #0b3d2e; }

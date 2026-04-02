@@ -82,3 +82,16 @@
   height: auto;
   display: block;
 }
+/* State hover and active styles */
+.nigeria-map path {
+  transition: fill 0.15s ease;
+  cursor: pointer;
+}
+
+.nigeria-map path:hover {
+  fill: #1a6b47;
+}
+
+.nigeria-map path.active-path {
+  fill: #0b3d2e;
+}
